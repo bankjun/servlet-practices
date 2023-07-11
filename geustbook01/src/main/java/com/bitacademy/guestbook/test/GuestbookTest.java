@@ -13,7 +13,7 @@ public class GuestbookTest {
 		vo.setName("이준오");
 		vo.setPassword("asdf");
 		vo.setMessage("테스트입니다.");
-		vo.set시간 어캐하지
+		vo.setRegDate("2021-01-27");
 		
 		
 	}

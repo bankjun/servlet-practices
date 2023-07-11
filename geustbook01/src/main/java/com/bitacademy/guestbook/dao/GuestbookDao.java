@@ -94,6 +94,7 @@ public class GuestbookDao {
 			pstmt.setString(2,vo.getPassword());
 			pstmt.setString(3,vo.getMessage());
 			pstmt.setString(4,vo.get뭘가져와야하지);
+			// 1) 
 			// 5. statement실행
 			rs = pstmt.executeQuery();
 			
