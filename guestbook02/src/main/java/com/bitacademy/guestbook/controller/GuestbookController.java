@@ -18,7 +18,8 @@ public class GuestbookController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8"); // 엔코딩
 		
-		String actionName = request.getParameter("a"); // 파라메터 가져오는 애
+		String actionName = request.getParameter("a"); 
+		//(request)요청객체 속의 파라메터 a의 값을 가져옴 
 		
 		if("add".equals(actionName)) {
 			System.out.println("add");
