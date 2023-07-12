@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +27,9 @@ public class GuestbookDao {
 			String url = "jdbc:mariadb://192.168.0.150:3306/webdb?charset=utf8";
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 			// 3. statement준비
-			String sql ="select no, name, password, message, reg_date "
-					+ "    from guestbook"
-					+ "order by no asc";
+			String sql =" select no, name, password, message, date_format(reg_date, '%Y-%m-%d') "
+					+ "     from guestbook"
+					+ " order by no asc";
 			pstmt = conn.prepareStatement(sql);
 			// 4. 바인딩 
 			
@@ -52,6 +53,7 @@ public class GuestbookDao {
 				
 				result.add(vo);
 			}
+			System.out.println("select 성공");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패: "+ e);
 		} catch (SQLException e) {
@@ -75,7 +77,7 @@ public class GuestbookDao {
 	}
 	
 	public void insert(GuestbookVo vo) {
-
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -93,20 +95,19 @@ public class GuestbookDao {
 			pstmt.setString(1,vo.getName());
 			pstmt.setString(2,vo.getPassword());
 			pstmt.setString(3,vo.getMessage());
-			pstmt.setString(4,vo.get뭘가져와야하지);
-			// 1) 
+			pstmt.setString(4, date.format(java.sql.Timestamp.from(java.time.Instant.now())));
+			
 			// 5. statement실행
 			rs = pstmt.executeQuery();
 			
 			// 6. 결과처리할게 있나 -> sql문 실행하면 끝인데
-		    
+			System.out.println("insert성공");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패: "+ e);
 		} catch (SQLException e) {
 			System.out.println("Error: "+ e);
 		} finally {// 6. 자원정리
 			try {
-				System.out.println("insert성공");
 				if(rs != null) {
 					rs.close();
 				}
@@ -122,7 +123,7 @@ public class GuestbookDao {
 		}
 	}
 	
-	public void delete(String name, String password) {
+	public void delete(Long no, String password) {
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -137,20 +138,20 @@ public class GuestbookDao {
 			String sql ="delete from guestbook where name= ? and password= ?";
 			pstmt = conn.prepareStatement(sql);
 			// 4. 바인딩 
-			pstmt.setString(1, name);
+			pstmt.setLong(1, no);
 			pstmt.setString(2, password);
 			// 5. statement실행
 			rs = pstmt.executeQuery();
 			
 			// 6. 결과처리할게 있나 -> sql문 실행하면 끝인데22
-		    
+			System.out.println("delete 성공");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패: "+ e);
 		} catch (SQLException e) {
 			System.out.println("Error: "+ e);
 		} finally {// 6. 자원정리
 			try {
-				System.out.println("delete 성공");
+				
 				if(rs != null) {
 					rs.close();
 				}

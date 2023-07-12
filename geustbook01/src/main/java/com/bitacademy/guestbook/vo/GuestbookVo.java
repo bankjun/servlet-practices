@@ -1,5 +1,6 @@
 package com.bitacademy.guestbook.vo;
 
+
 public class GuestbookVo {
 	private Long no;
 	private String name;
