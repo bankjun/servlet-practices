@@ -10,5 +10,6 @@
   	<module>geustbook01</module>
   	<module>emaillist02</module>
   	<module>guestbook02</module>
+  	<module>jstlel</module>
   </modules>
 </project>
