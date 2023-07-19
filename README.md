@@ -1,16 +1,10 @@
 # servlet-practices
 
-JSP, jsp안에 java코드 혼용
---------------------
-### emaillist 
-### guestbook01 
+### emaillist, guestbook01 
+* JSP, jsp안에 java코드 혼용
 
-JSP/Servlet MVC, jsp안에 java 혼용
---------------------
-### emaillist02 
-### guestbook02 
-
----------------
+### emaillist02, guestbook02 
+* JSP/Servlet MVC, jsp안에 java 혼용
 
 ### jstl : JSTL 연습
 * _01Servlet: 파라미터 보내기(값, 객체, mapping)
